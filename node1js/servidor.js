@@ -17,7 +17,19 @@ mongoose.connect("mongodb+srv://cjltime:j7v3DGw0PhvIJM5R@clustercjltime.narasaq.
 router.get("/", (req,res)=>{
     res.send("El Inicio de mi API");
 })
+//funcionalidad verbo get
 
+router.get("/tarea",(req,res) => {
+    TareaSchema.find(function(err,datos){
+        if(err){
+            console.log("error leyendo las tareas");
+        }else{
+            res.send(datos);
+        }
+    })
+});
+
+//funcionalidad vervo post
 router.post("/tarea",(req,res)=>{
     let nuevaTarea=new TareaSchema({
         idTarea:req.body.id,
